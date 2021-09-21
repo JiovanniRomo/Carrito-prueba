@@ -94,6 +94,8 @@ class Cursos {
     private cargarFormularioPago(mostrar: boolean) {
         if(mostrar) {
             console.log('pagando...')
+            const contenedorForm = document.createElement('div');
+            contenedorForm.classList.add('main-contenedorPago');
         }
     }
 
