@@ -24,7 +24,6 @@
                     />
                 </picture>
                 <p class="header-busqueda">Busqueda</p>
-                <a class="header-busqueda" href="cart.html">Carrito</a>
             </header>
             <main class="main" id="lista-cursos">
                 <h2 class="main--category">
@@ -39,7 +38,7 @@
                     <div class="main-card--info">
                         <p class="info--title">Angular Avanzado</p>
                         <span>Fernando Herrera</span>
-                        <p>Precio: $10</p>
+                        <p class="info--precio">Precio: $<span>10</span></p>
                         <a href="#" class="main-card--add agregar-carrito"
                             >Agregar al carrito</a
                         >
@@ -55,7 +54,7 @@
                     <div class="main-card--info">
                         <p class="info--title">React de Cero a Experto</p>
                         <span>Fernando Herrera</span>
-                        <p>Precio: $12</p>
+                        <p class="info--precio">Precio: $ <span>12</span></p>
                         <a href="#" class="main-card--add agregar-carrito"
                             >Agregar al carrito</a
                         >
@@ -71,11 +70,26 @@
                     <div class="main-card--info">
                         <p class="info--title">TypeScript - Guia de bolsillo</p>
                         <span>Fernando Herrera</span>
-                        <p>Precio: $15</p>
+                        <p class="info--precio">Precio: $ <span>15</span></p>
                         <a href="#" class="main-card--add agregar-carrito"
                             >Agregar al carrito</a
                         >
                     </div>
+                </div>
+
+                <div class="carrito-cursos">
+                    <table id="lista-carrito" class="lista-carrito">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </main>
             <footer class="footer">

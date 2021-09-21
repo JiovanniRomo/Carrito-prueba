@@ -1,47 +1,59 @@
 import Cursos from "./models/Cursos";
 import "./styles.scss";
 
+export const cursos = new Cursos();
+
+
 document.addEventListener("DOMContentLoaded", () => {
     //Obtenemos la referencia al padre contenedor de nuestros cursos
     const listaCursos = <HTMLDivElement>document.querySelector("#lista-cursos");
+    const tableCursos = <HTMLDivElement>document.querySelector(".carrito-cursos");
+    const listaCarritoTable = <HTMLTableElement> document.querySelector('#lista-carrito');
 
     const cargarListeners = () => {
         listaCursos.addEventListener("click", agregarCurso);
+        listaCarritoTable.addEventListener('click', eliminarItem);
     };
 
     cargarListeners();
 
     //Creamos el listado de cursos
-    const cursos = new Cursos();
 
     //Obtenemos los cursos guardados en el localStorage
-    const cursosEnStorage = JSON.parse(localStorage.getItem('carrito'));
+    const cursosEnStorage = JSON.parse(localStorage.getItem("carrito"));
 
     //Si el usuario ya ha agregado articulos al carrito, los cargamos en su listado para mostrarlo
     if (cursosEnStorage) {
         cursos.cargarCursosLocalStorage(cursosEnStorage);
     }
 
-    const cargarCarritoHTML = () => {
-        if(cursos.listado !== []) {
+    const mostrarMensajesListado = () => {
+        const listaCursos = document.querySelector("#lista-cursos");
+        if (cursos.listado.length >= 1) {
             let cuenta = 0;
 
-            cursos.listado.forEach ( curso => {
-                (curso.cantidad === 1) ? cuenta++ : cuenta += curso.cantidad;
-            })
+            cursos.listado.forEach((curso) => {
+                //Si un curso solo ha sido agregado 1 vez, la vuenta general solo aumenta 1
+                //Caso contrario se sumaran todos los cursos que hayan sido agregados (aunque sean el mismo)
+                curso.cantidad === 1 ? cuenta++ : (cuenta += curso.cantidad);
+            });
 
-            const cuentaCursos = document.createElement('p');
-            cuentaCursos.textContent = `Tienes ${cuenta} ${(cuenta === 1) ? 'curso' : 'cursos'} pendientes por comprar!`;
-            document.querySelector('#lista-cursos').appendChild(cuentaCursos);
+            const cuentaCursos = document.createElement("p");
+            cuentaCursos.classList.add("cuenta-cursos", "visible");
+            cuentaCursos.textContent = `Tienes ${cuenta} ${cuenta === 1 ? "curso" : "cursos"} pendientes por comprar!`;
+            listaCursos.appendChild(cuentaCursos);
+            cursos.crearHTMLListado();
         } else {
-            const buySomethingParagraph = document.createElement('p');
-            buySomethingParagraph.textContent = 'Oh no! Parece que aun no agregas nada a tu carrito!';
-
-            document.querySelector('#lista-cursos').appendChild(buySomethingParagraph);
+            tableCursos.classList.remove('visible');
+            tableCursos.classList.add('hidden');
+            const buySomethingParagraph = document.createElement("p");
+            buySomethingParagraph.textContent =
+                "Oh no! Parece que aun no agregas nada a tu carrito!";
+            listaCursos.appendChild(buySomethingParagraph);
         }
-    }
+    };
 
-    cargarCarritoHTML();
+    mostrarMensajesListado();
 
     function agregarCurso(e) {
         //Prevenimos el evento por default (reedireccionar)
@@ -55,8 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const sincronizarStorage = () => {
-        localStorage.setItem('carrito', JSON.stringify(cursos.listado));
+    function eliminarItem(e) {
+        e.preventDefault();
+
+        if(e.target.classList.contains('borrar-curso')) {
+            const cursoId = parseInt(e.target.getAttribute('data-id'));
+            cursos.eliminarCurso(cursoId);
+            window.location.reload();
+        }
     }
 
     function leerCurso(curso: HTMLDivElement) {
@@ -65,24 +83,24 @@ document.addEventListener("DOMContentLoaded", () => {
             img: curso.querySelector("img").src,
             titulo: curso.querySelector(".info--title").textContent,
             profesor: curso.querySelector("span").textContent,
-            precio: curso.querySelector("p").textContent,
+            precio: curso.querySelector('.info--precio span').textContent,
             cantidad: 1,
             id: parseInt(curso.getAttribute("data-id")),
         };
 
         //Comprobamos si el curso que esta agregando el usuario ya existe en el carrito
-        const existe = cursos.listado.some(curso => curso.id === data.id);
-        
+        const existe = cursos.listado.some((curso) => curso.id === data.id);
+
         //Si un curso ya ha sido agregado, actualizamos la cantidad, NO lo volvemos a agregar
-        if(existe) {
-            cursos.listado = cursos.listado.map( curso => {
-                if(curso.id === data.id) {
+        if (existe) {
+            cursos.listado = cursos.listado.map((curso) => {
+                if (curso.id === data.id) {
                     curso.cantidad++;
                     return curso;
                 } else {
                     return curso;
                 }
-            })
+            });
 
             cursos.listado = [...cursos.listado];
         } else {
@@ -91,6 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         window.location.reload();
-        sincronizarStorage();
+        cursos.sincronizarStorage();
     }
 });

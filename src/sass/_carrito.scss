@@ -1,0 +1,33 @@
+.carrito-cursos {
+    inline-size: 90vw;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    
+    & p {
+        margin: 20px;
+    }
+
+    &--contenido {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    & .lista-carrito {
+        text-align: center;
+    }
+}
+
+.cuenta-cursos {
+    font-size: 1.3rem;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
