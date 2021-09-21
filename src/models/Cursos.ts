@@ -92,9 +92,11 @@ class Cursos {
     }
 
     private cargarFormularioPago(mostrar: boolean) {
-        if(mostrar) {
+        //Nos aseguramos de que el usuario no pueda cargar el formulario mas de 1 vez
+        const contenedor = document.querySelectorAll('.main-contenedorPago');
+
+        if(mostrar && contenedor.length === 0) {
             const contenedorFormularioRef:HTMLDivElement = document.querySelector('.main .main-formularioPago');
-            console.log('pagando...')
             const contenedorForm = document.createElement('form');
             contenedorForm.classList.add('main-contenedorPago');
 
@@ -106,13 +108,83 @@ class Cursos {
                     <input type="number" placeholder="CVC" required='true' id="formulario-cvc">
                     <p>Fecha de vencimiento: </p>
                     <input type="date" id="formulario-vencimiento">
-
-                    <button class="main-formularioPago--envio boton">Comprar!</button>
+                    <a class="main-formularioPago--envio boton" href='#'>Comprar ahora!</a> 
             `;
 
             contenedorFormularioRef.classList.remove('hidden');
             contenedorFormularioRef.appendChild(contenedorForm);
+            const boton = <HTMLAnchorElement> document.querySelector('.main .main-contenedorPago .main-formularioPago--envio');
+            boton.addEventListener('click', this.validarForm);
         }
+    }
+
+    public crearAlerta(type: string, message: string) {
+        const divAlerta = document.createElement('div');
+        const alertaParagraph = document.createElement('p');
+        
+        // if(type === 'error') {
+        //     divAlerta.classList.add('error');
+        //     alertaParagraph.textContent = message;
+        // } else if(type === 'success') {
+        //     if(divAlerta.classList.contains('error')) {
+        //         divAlerta.classList.remove('error');
+        //     }
+        //     divAlerta.classList.add('success');
+
+        //     setTimeout(() => {
+
+        //     alertaParagraph.textContent = message;
+        //         setTimeout(() => {
+        //             alertaParagraph.remove();
+        //             this.resetearFormulario();
+        //         }, 5000)
+
+        //     }, 3000)
+        // }
+
+        // const formulario = <HTMLFormElement> document.querySelector('main-contenedorPago');
+        // formulario.insertBefore(divAlerta, formulario);
+        // divAlerta.appendChild(alertaParagraph);
+    }
+
+    alertaSuccess(message: string) {
+        const divSuccess = document.createElement('div');
+        const successParagraph = document.createElement('p');
+
+        successParagraph.textContent = message;
+        divSuccess.appendChild(successParagraph);
+
+        const formulario = <HTMLFormElement> document.querySelector('main-contenedorPago');
+        formulario.insertBefore(divSuccess, formulario);
+
+    }
+
+    private validarForm(e: Event) {
+        console.log('validando')
+        e.preventDefault();
+
+        const nombreForm = document.querySelector('.main-contenedorPago #formulario-nombre').textContent;
+        const direccionForm = document.querySelector('.main-contenedorPago #formulario-direccion').textContent;
+        const tarjetaForm = document.querySelector('.main-contenedorPago #formulario-tarjeta').textContent;
+        const cvcForm = document.querySelector('.main-contenedorPago #formulario-cvc').textContent;
+        const vencimientoForm = document.querySelector('.main-contenedorPago #formulario-vencimiento').textContent;
+        const fechaActual = Date.now();
+
+        // if(nombreForm.trim().length < 5 || direccionForm.trim().length < 10 || tarjetaForm.length < 10 || cvcForm.trim().length < 3) {
+        //     this.crearAlerta('error', 'Complete los campos correctamente y vuelva a intentarlo');
+        // } else {
+        this.alertaSuccess('Que disfrute su compra!');
+        // }
+    }
+
+    
+
+    private resetearFormulario(e: Event) {
+        e.preventDefault();
+
+        const formulario = <HTMLFormElement> document.querySelector('main-contenedorPago');
+        formulario.reset();
+        localStorage.removeItem('carrito');
     }
 
     public sincronizarStorage = () => {
