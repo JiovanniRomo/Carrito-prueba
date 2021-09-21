@@ -50,6 +50,13 @@
     & .carrito-cursos .lista-carrito {
         position: relative;
     }
+
+    &-formularioPago {
+        z-index: 9;
+        inline-size: 200px;
+        background-color: lightgrey;
+        padding: 20px;
+    }
 }
 
 

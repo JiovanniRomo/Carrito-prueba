@@ -93,9 +93,25 @@ class Cursos {
 
     private cargarFormularioPago(mostrar: boolean) {
         if(mostrar) {
+            const contenedorFormularioRef:HTMLDivElement = document.querySelector('.main .main-formularioPago');
             console.log('pagando...')
-            const contenedorForm = document.createElement('div');
+            const contenedorForm = document.createElement('form');
             contenedorForm.classList.add('main-contenedorPago');
+
+            //Nosotros estamos generando el HTML, asi que no hay problemas de seguridad
+            contenedorForm.innerHTML = `
+                    <input type="text" placeholder='Nombre completo' required='true' id="formulario-nombre">
+                    <input type="text" placeholder="Direccion de facturacion" id="formulario-direccion">
+                    <input type="number" placeholder='Numero de tarjeta' required='true' id="formulario-tarjeta">
+                    <input type="number" placeholder="CVC" required='true' id="formulario-cvc">
+                    <p>Fecha de vencimiento: </p>
+                    <input type="date" id="formulario-vencimiento">
+
+                    <button class="main-formularioPago--envio boton">Comprar!</button>
+            `;
+
+            contenedorFormularioRef.classList.remove('hidden');
+            contenedorFormularioRef.appendChild(contenedorForm);
         }
     }
 
