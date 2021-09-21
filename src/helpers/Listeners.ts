@@ -1,5 +1,5 @@
 import { listaCarritoTable, listaCursos } from "../index";
-import { agregarCurso, eliminarItem } from "./Cursos";
+import { agregarCurso, eliminarItem } from "./Cursos_helper";
 
 const cargarListeners = () => {
     listaCursos.addEventListener("click", agregarCurso);
