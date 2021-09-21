@@ -10,6 +10,7 @@
 
     &-enterprises {
         inline-size: 90%;
+        margin: 0 auto;
 
         &--text span {
             color: $color-principal;
@@ -19,6 +20,21 @@
             display: grid;
             grid-template-rows: repeat(2, auto);
             grid-template-columns: repeat(3, auto);
+            justify-content: center;
         }
     }
 }
+
+@media (min-width: $break-point-tablet) {
+    .footer {
+        text-align: center;
+        &-enterprises {
+            inline-size: 80%;
+            margin: 0 auto;
+            &--partners {
+                display: flex;
+                justify-content: space-evenly
+            }
+        }
+    }
+};

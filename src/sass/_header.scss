@@ -1,13 +1,20 @@
 .header {
-    inline-size: 100vw;
+    inline-size: 100%;
     block-size: 10vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    box-shadow: 1px 11px 5px -1px rgba(0,0,0,0.08);
+    box-shadow: 1px 11px 5px -1px rgba(0, 0, 0, 0.08);
     z-index: 2;
+    font-size: 1.5rem;
 
     &-logo {
-        inline-size: 100px;
+        inline-size: 90px;
+    }
+}
+
+@media (min-width: $break-point-tablet) {
+    .header picture img {
+        margin-left: 40px;
     }
 }

@@ -1,0 +1,15 @@
+.boton {
+    inline-size: 200px;
+    background-color: $color-principal;
+    color: white;
+    border-radius: 2px;
+    border: 0;
+    position: absolute;
+    left: 15%;
+}
+
+@media (min-width: $break-point-tablet) {
+    .boton {
+        left: 22%;
+    }
+}

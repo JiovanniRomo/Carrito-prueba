@@ -55,7 +55,6 @@ class Cursos {
     }
 
     public crearHTMLListado() {
-
         this.limpiarHTML();
 
         this.listado.forEach( curso => {
@@ -79,11 +78,23 @@ class Cursos {
                 <td>
                     <a href="#" class="borrar-curso" data-id="${id}">X</a>
                 </td>
-            `
+            `;
+
+            const botonPagar =  document.createElement('button');
+            botonPagar.textContent = 'Pagar todo!';
+            botonPagar.classList.add('boton');
+            botonPagar.onclick = () => {this.cargarFormularioPago(true)}
             document.querySelector('#lista-carrito').appendChild(cursoContainerCarrito);
+            document.querySelector('#lista-carrito').appendChild(botonPagar);
         })
 
         this.sincronizarStorage();
+    }
+
+    private cargarFormularioPago(mostrar: boolean) {
+        if(mostrar) {
+            console.log('pagando...')
+        }
     }
 
     public sincronizarStorage = () => {
