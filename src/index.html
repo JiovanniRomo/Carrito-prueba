@@ -1,12 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack</title>
-</head>
-<body>
-    <div id="app"></div>
-</body>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>Carrito de compras</title>
+    </head>
+    <body>
+        <div id="app">
+            <header class="header">
+                <a class="header-menu" href="#">Menu</a>
+                <picture>
+                    <img
+                        src="./assets/img/logo.png"
+                        alt="epicode-logo"
+                        class="header-logo"
+                    />
+                </picture>
+                <p class="header-busqueda">Busqueda</p>
+                <a class="header-busqueda" href="cart.html">Carrito</a>
+            </header>
+            <main class="main">
+                <h2 class="main--category">
+                    Cursos destacados de <span>Desarrollo web</span>
+                </h2>
+                <div class="main-card">
+                    <img
+                        src="./assets/img/angular.jpg"
+                        alt="angular-course image"
+                        class="main-card--image"
+                    />
+                    <div class="main-card--info">
+                        <p>Angular Avanzado</p>
+                        <span>Fernando Herrera</span>
+                        <p>Precio: $10</p>
+                        <a href="#" class="main-card--add agregar-carrito"
+                            >Agregar al carrito</a
+                        >
+                    </div>
+                </div>
+
+                <div class="main-card">
+                    <img
+                        src="./assets/img/React-De-cero-a-experto-Hooks-y-MERN.jpeg"
+                        alt="react-course image"
+                        class="main-card--image"
+                    />
+                    <div class="main-card--info">
+                        <p>React de Cero a Experto</p>
+                        <span>Fernando Herrera</span>
+                        <p>Precio: $12</p>
+                        <a href="#" class="main-card--add agregar-carrito"
+                            >Agregar al carrito</a
+                        >
+                    </div>
+                </div>
+
+                <div class="main-card">
+                    <img
+                        src="./assets/img/typescript.jpg"
+                        alt="typescript-course image"
+                        class="main-card--image"
+                    />
+                    <div class="main-card--info">
+                        <p>TypeScript - Guia de bolsillo</p>
+                        <span>Fernando Herrera</span>
+                        <p>Precio: $15</p>
+                        <a href="#" class="main-card--add agregar-carrito"
+                            >Agregar al carrito</a
+                        >
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="footer-enterprises">
+                    <p class="footer-enterprises--text">
+                        Las principales empresas eligen a
+                        <span>Epicode Business</span> para desarrollar sus
+                        habilidades profesionales
+                    </p>
+                    <div class="footer-enterprises--partners">
+                        <img src="https://s.udemycdn.com/partner-logos/v4/apple-light.svg" alt="apple">
+                        <img src="https://s.udemycdn.com/partner-logos/v4/box-light.svg" alt="box">
+                        <img src="https://s.udemycdn.com/partner-logos/v4/volkswagen-light.svg" alt="Volkswagen">
+                        <img src="https://s.udemycdn.com/partner-logos/v4/netflix-light.svg" alt="Netflix">
+                        <img src="https://s.udemycdn.com/partner-logos/v4/eventbrite-light.svg" alt="eventbrite">
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

@@ -1,0 +1,45 @@
+.main {
+    inline-size: 95vw;
+    block-size: 100%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--category span {
+        color: $color-principal;
+    }
+
+    &-card {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+
+        &--info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.6rem;
+
+            span {
+                color: gray;
+                font-size: 1.2rem;
+            }
+        }
+
+        &--image {
+            inline-size: 200px;
+            border: .5px solid gray;
+        }
+
+        &--add {
+            inline-size: 200px;
+            background-color: $color-principal;
+            color: white;
+            border-radius: 2px;
+            text-align: center;
+            padding: 5px;
+        }
+    }
+}
