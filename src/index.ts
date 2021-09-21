@@ -20,8 +20,28 @@ document.addEventListener("DOMContentLoaded", () => {
     //Si el usuario ya ha agregado articulos al carrito, los cargamos en su listado para mostrarlo
     if (cursosEnStorage) {
         cursos.cargarCursosLocalStorage(cursosEnStorage);
-        console.log(cursos.listado)
     }
+
+    const cargarCarritoHTML = () => {
+        if(cursos.listado !== []) {
+            let cuenta = 0;
+
+            cursos.listado.forEach ( curso => {
+                (curso.cantidad === 1) ? cuenta++ : cuenta += curso.cantidad;
+            })
+
+            const cuentaCursos = document.createElement('p');
+            cuentaCursos.textContent = `Tienes ${cuenta} ${(cuenta === 1) ? 'curso' : 'cursos'} pendientes por comprar!`;
+            document.querySelector('#lista-cursos').appendChild(cuentaCursos);
+        } else {
+            const buySomethingParagraph = document.createElement('p');
+            buySomethingParagraph.textContent = 'Oh no! Parece que aun no agregas nada a tu carrito!';
+
+            document.querySelector('#lista-cursos').appendChild(buySomethingParagraph);
+        }
+    }
+
+    cargarCarritoHTML();
 
     function agregarCurso(e) {
         //Prevenimos el evento por default (reedireccionar)
@@ -70,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cursos.listado = [...cursos.listado, cursos.agregarCurso(data)];
         }
 
+        window.location.reload();
         sincronizarStorage();
     }
 });
