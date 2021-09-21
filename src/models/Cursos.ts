@@ -19,7 +19,7 @@ class Cursos {
 
     public agregarCurso(data: CursoInterace): Curso {
         const { img, titulo, profesor, precio, id, cantidad } = data;
-        const curso = new Curso(img, titulo, profesor, precio, cantidad, id)
+        const curso = new Curso(img, titulo, profesor, parseInt(precio), cantidad, id)
         this.listado = [...this.listado, curso];
         return curso;
     }
@@ -55,16 +55,14 @@ class Cursos {
         this.listado = [...this.listado];
     }
 
-    alertaSuccess(message: string) {
-        const divSuccess = document.createElement('div');
-        const successParagraph = document.createElement('p');
+    public calcularTotal(): number {
+        let total = 0;
+        this.listado.forEach( item => {
+            const { cantidad, precio } = item;
 
-        successParagraph.textContent = message;
-        divSuccess.appendChild(successParagraph);
-
-        const formulario = <HTMLFormElement> document.querySelector('main-contenedorPago');
-        formulario.insertBefore(divSuccess, formulario);
-
+            (cantidad === 1) ? total+= precio : total += cantidad * precio;
+        })
+        return total;
     }
 
     public sincronizarStorage = () => {

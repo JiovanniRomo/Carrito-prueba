@@ -47,6 +47,19 @@
         }
     }
 
+    &-contenedorPago {
+        font-size: 1.5rem;
+        
+        & span {
+            color: $color-principal;
+            font-weight: 700;
+        }
+    }
+
+    &-cuentaCursos {
+        font-size: 1.5rem;
+    }
+
     & .carrito-cursos .lista-carrito {
         position: relative;
     }

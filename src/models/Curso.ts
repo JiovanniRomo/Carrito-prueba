@@ -2,7 +2,7 @@ class Curso {
     img: string;
     titulo: string;
     profesor: string;
-    precio: string;
+    precio: number;
     cantidad: number;
     id: number;
 
@@ -10,7 +10,7 @@ class Curso {
         img: string,
         titulo: string,
         profesor: string,
-        precio: string,
+        precio: number,
         cantidad: number,
         id: number
     ) {

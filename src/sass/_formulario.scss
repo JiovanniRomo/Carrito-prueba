@@ -2,3 +2,28 @@
     border: 0px;
     margin: 20px;
 }
+
+@media(min-width: $break-point-tablet) {
+
+    .main {
+        &-formularioPago {
+            inline-size: 550px;
+        }
+
+        &-contenedorPago {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                font-size: 1.6rem;
+            }
+
+            input {
+                inline-size: 150px;
+            }
+        }
+    }
+
+}      

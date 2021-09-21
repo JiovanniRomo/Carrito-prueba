@@ -1,5 +1,6 @@
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -12,4 +13,18 @@ body {
 a{
     text-decoration: none;
     color: black
+}
+
+.success {
+    background-color: lightgreen;
+    color: white;
+
+    & p {
+        font-size: 1.6rem;
+    }
+}
+
+.error {
+    background-color: lightcoral;
+    color: white
 }

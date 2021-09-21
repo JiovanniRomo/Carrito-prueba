@@ -19,7 +19,8 @@ const mostrarMensajesListado = () => {
         }
 
         //Mensaje personalizado en base a los cursos agregados
-        cuentaCursos.textContent = `Tienes ${cuenta} ${cuenta === 1 ? "curso" : "cursos"} pendientes por comprar!`;
+        cuentaCursos.textContent = `Tienes ${cuenta} ${cuenta === 1 ? "curso pendiente" : "cursos pendientes"} por comprar!`;
+        cuentaCursos.classList.add('main-cuentaCursos');
         listaCursos.appendChild(cuentaCursos);
         ui.crearHTMLListado();
     } else {
@@ -29,6 +30,7 @@ const mostrarMensajesListado = () => {
         const buySomethingParagraph = document.createElement("p");
         buySomethingParagraph.textContent =
             "Oh no! Parece que aun no agregas nada a tu carrito!";
+        buySomethingParagraph.classList.add('main-cuentaCursos');
         listaCursos.appendChild(buySomethingParagraph);
     }
 };
