@@ -3,10 +3,13 @@ export const crearAlerta = (type: alerta, message: string) => {
 
     const contenedor = document.querySelector('.main-formularioPago');
     const divAlert = document.createElement('div');
+    divAlert.classList.add('main-containerAlert');
     const paragraphAlert = document.createElement('p');
     paragraphAlert.textContent = message;
 
     divAlert.appendChild(paragraphAlert);
+
+    const divAlertExist = document.querySelector('.main-containerAlert');
 
     if(type === 'succed') {
         console.log(`all ok: ${message}`);
@@ -14,7 +17,10 @@ export const crearAlerta = (type: alerta, message: string) => {
 
         //Simular el tiempo de espera de un API
         setTimeout(() => {
-            contenedor.appendChild(divAlert);
+
+            if(!divAlertExist) {
+                contenedor.appendChild(divAlert);
+            }
             setTimeout(() => {
                 contenedor.removeChild(divAlert);
 
@@ -29,7 +35,9 @@ export const crearAlerta = (type: alerta, message: string) => {
         divAlert.classList.add('error');
 
         setTimeout(() => {
-            contenedor.append(divAlert);
+            if(!divAlertExist) {
+                contenedor.append(divAlert);
+            }
             setTimeout(() => {
                 contenedor.removeChild(divAlert);
             }, 5000)
