@@ -1,32 +1,22 @@
-#Webpack Stater
+# Carrito de compras + localStorage, TS y SASS
 
-Este es el proyecto incial para crear apps utilizando webpack.
-
-### Notas:
-Recuerden reconstruir los modulos de node 
+Reconstruir los modulos de node:
 
 ```
-npm install 
-
+npm i 
 ```
 
-Y para construir el build:
-
+Servidor de desarrollo:
 ```
-npm run build 
+npm start
 ```
 
-## To work with TypeScript
+Build en development mode:
+```
+npm run build:dev
+```
 
-Right now you can only use Webpack and Typescript for ***development*** mode (which includes webpack-dev-server) using:
-
-    npm start
-
- 
-I'll improve for production mode soon. Gimme time!
-
-But if you wanna see how your project it's going to look like in prod, please use:
-
-    npm run build:dev
-    
-This will generate the "final" bundle of files so you can create a test web page with them.
+Build en production mode:
+```
+npm run build
+```
